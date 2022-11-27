@@ -6,7 +6,7 @@
 <p align="center"><b>Python script which find winners by reactions on message in discord</b></p>
 
 <p align="center">  
-        <img src="https://ibb.co/WKxS9zp" alt=""/>
+        <img src="https://i.ibb.co/3hrtXFY/screen1.png" alt=""/>
 </p>
 
 ## About
@@ -37,7 +37,7 @@ The token should be in your Clipboard. If it's just "null" or "undefined" do the
 
 ### How to get CHANNEL_ID and MESSAGE_ID
 <p>Copy message link</p>
-<img src="https://ibb.co/56CvGw6">
+<img src="https://i.ibb.co/80G2Nt0/mess.png">
 
 ```
 https://discord.com/channels/721887895157211181/780950361702924308/1044038040605179905
@@ -51,9 +51,9 @@ Press F12 or Ctrl+Shift+I in your browser.
 
 Press Ctrl+Shift+C, point to reaction and click on it
 
-<img src="https://ibb.co/T41jvtt">
+<img src="https://i.ibb.co/Mcfw277/Screenshot-2.png">
 
-<img src="https://ibb.co/3kQdzSb">
+<img src="https://i.ibb.co/N7bCSWq/Screenshot-3.png">
 
 get values in *alt* and *data-id* and join with ':'
 ```
