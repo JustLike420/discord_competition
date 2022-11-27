@@ -59,8 +59,10 @@ def main():
 
     with open('winners.txt', 'w', encoding='utf-8') as file:
         for i, winner in enumerate(winners):
-            file.write(f'{i+1} {winner}\n')
+            file.write(f'{i + 1} {winner}\n')
 
     print('[!] Results in winners.txt file.')
+
+
 if __name__ == '__main__':
     main()
