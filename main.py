@@ -63,6 +63,9 @@ def main():
 
     print('[!] Results in winners.txt file.')
 
+    for i, winner in enumerate(winners):
+        print(i+1, winner)
 
 if __name__ == '__main__':
     main()
+    input()
