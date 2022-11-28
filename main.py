@@ -31,28 +31,33 @@ def main():
     message_id = os.getenv('MESSAGE_ID')
     reaction_id = os.getenv('REACTION_ID')
     encoded_emoji = urllib.parse.quote(reaction_id)
+    if not os.path.exists('all_members.txt'):
+        flag = True
+        all_members = []
+        while True:
+            if flag:
+                url = f'https://discord.com/api/v9/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}' \
+                      f'?limit=100'
+                flag = False
+            else:
+                url = f'https://discord.com/api/v9/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}' \
+                      f'?limit=100&after={last}'
 
-    flag = True
-    all_members = []
-    while True:
-        if flag:
-            url = f'https://discord.com/api/v9/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}' \
-                  f'?limit=100'
-            flag = False
-        else:
-            url = f'https://discord.com/api/v9/channels/{channel_id}/messages/{message_id}/reactions/{encoded_emoji}' \
-                  f'?limit=100&after={last}'
+            req = requests.get(url=url, headers=headers)
+            data = req.json()
 
-        req = requests.get(url=url, headers=headers)
-        data = req.json()
-
-        if len(data):
-            for person in data:
-                all_members.append(person['username'] + '#' + person['discriminator'])
-            last = data[-1]['id']
-        else:
-            break
-
+            if len(data):
+                for person in data:
+                    all_members.append(person['username'] + '#' + person['discriminator'])
+                last = data[-1]['id']
+            else:
+                break
+        with open('all_members.txt', 'w', encoding='utf-8') as file:
+            for member in all_members:
+                file.write(member+'\n')
+    else:
+        with open('all_members.txt', 'r', encoding='utf-8') as file:
+            all_members = file.read().split('\n')
     print(f'[+] Members count: {len(all_members)}\n')
 
     winners = get_winner(all_members, winners_count)
